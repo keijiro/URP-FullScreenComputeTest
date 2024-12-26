@@ -4,7 +4,11 @@ using UnityEngine.Rendering.RenderGraphModule;
 [ExecuteInEditMode]
 public sealed partial class ComputeTestController : MonoBehaviour
 {
-    [SerializeField] ComputeShader _compute = null;
+    [SerializeField, HideInInspector] ComputeShader _compute = null;
+    [SerializeField, HideInInspector] Texture2D _texture = null;
+
+    void Start()
+      => Shader.SetGlobalTexture("_ComputeTestGlobalTexture", _texture);
 
     public void ExecutePass(ComputeGraphContext context,
                             TextureHandle source, TextureHandle dest,

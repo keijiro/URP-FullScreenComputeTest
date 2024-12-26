@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _compute: {fileID: 7200000, guid: 338ebebcaf1ed4e83a1d71a3703a4b83, type: 3}
+  - _texture: {fileID: 7506314328700112305, guid: 3a967ac45aada4a1e9971b7421e4f6fd, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

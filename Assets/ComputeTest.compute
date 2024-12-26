@@ -2,6 +2,8 @@
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 
+sampler2D _ComputeTestGlobalTexture;
+
 TEXTURE2D(Source);
 RW_TEXTURE2D(float4, Destination);
 
@@ -11,8 +13,9 @@ void Main(uint2 id : SV_DispatchThreadID)
     uint width, height;
     Destination.GetDimensions(width, height);
 
-    float2 col = (float2)id / float2(width, height);
+    float2 uv = (float2)id / float2(width, height);
+    float4 card = tex2Dgrad(_ComputeTestGlobalTexture, uv, 0, 0);
 
     if (all(id < uint2(width, height)))
-      Destination[id] = Source[id] + float4(col.xy, 0, 0);
+        Destination[id] = Source[id] / 3 + float4(uv, 0, 0) / 3 + card / 3;
 }
